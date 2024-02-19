@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> body {
+        margin: 0;
+        overflow: hidden;
+        /* 隐藏body窗口区域滚动条 */
+      }
+      </style>
+      <!--引入three.js三维引擎-->
+  <script src="http://www.yanhuangxueyuan.com/versions/threejsR92/build/three.js"></script>
+  <!-- <script src="./three.js"></script> -->
+  <!-- <script src="http://www.yanhuangxueyuan.com/threejs/build/three.js"></script> --> 
+    <script> 
+        var i , j;
+            for(i = 1;i <= 9;i ++){
+                document.write("<br>");  
+                for(j = 1;j <= i;j ++){
+                    sum = i * j;
+                    document.write(i ,"*",j ,"=",sum,"   ");   
+                }
+            }
+    </script> 
+</head>
+<body> 
+    <script src="https://threejs.org/build/three.js"></script>  
+    <script>  
+         
+        const scene = new THREE.Scene();  
+  
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);  
+        camera.position.z = 5;  
+  
+        const renderer = new THREE.WebGLRenderer();  
+        renderer.setSize(window.innerWidth, window.innerHeight);  
+        document.body.appendChild(renderer.domElement);  
+   
+        const geometry = new THREE.BoxGeometry(1, 1, 1);  
+        const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });  
+        const cube = new THREE.Mesh(geometry, material);  
+        scene.add(cube);  
+    
+        const light = new THREE.PointLight(0xffffff, 1, 100);  
+        light.position.set(2, 2, 2);  
+        scene.add(light);  
+  
+        function animate() {  
+            requestAnimationFrame(animate);  
+            cube.rotation.x += 0.01;  
+            cube.rotation.y += 0.02;  
+            renderer.render(scene, camera);  
+        }  
+        animate();  
+    </script>  
+</body>
+</html>
